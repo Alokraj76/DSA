@@ -1,6 +1,6 @@
 public class SinglyList 
 {
-    private ListNode head;
+    private static ListNode head;
     private static class ListNode
     {
         private int data;
@@ -101,6 +101,41 @@ public class SinglyList
             previous.next = current.next;
         }
     }
+    public boolean find(ListNode head, int searchKey)
+    {
+        if(head == null)
+        {
+            return false;
+        }
+        ListNode current = head;
+        while(current!=null)
+        {
+            if(current.data == searchKey)
+            {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+    public ListNode reverse(ListNode head)
+    {
+        if(head==null)
+        {
+            return head;
+        }
+        ListNode current = head;
+        ListNode previous = null;
+        ListNode next = null;
+        while(current!=null)
+        {
+            next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+        return previous;
+    }
     public int countSize()
     {
         if(head==null)
@@ -116,7 +151,7 @@ public class SinglyList
         }
         return count;
     }
-    public void display()
+    public void display(ListNode head)
     {
         ListNode current = head;
         while(current!=null)
@@ -129,14 +164,14 @@ public class SinglyList
     public static void main(String[] args) 
     {
         SinglyList sl = new SinglyList();
-        sl.head = new ListNode(10);
+        head = new ListNode(10);
         ListNode second = new ListNode(3);
         ListNode third = new ListNode(9);
         ListNode fourth = new ListNode(13);
-        sl.head.next = second;
+        head.next = second;
         second.next = third;
         third.next = fourth;
-        sl.display();
+        sl.display(head);
         // sl.insertFirst(30);
         // sl.insertFirst(29);
         // sl.insertLast(29);
@@ -145,8 +180,19 @@ public class SinglyList
         // sl.insert(4, 32);
         // System.out.println(sl.deleteFirst().data);
         // System.out.println(sl.deleteLast().data);
-        sl.delete(2);
-        sl.display();
+        // sl.delete(2);
+        // if(sl.find(head,4))
+        // {
+        //     System.out.println("Search key found!!");
+        // }
+        // else
+        // {
+        //     System.out.println("Search key not found!!");
+        // }
         //System.out.println("\n"+sl.countSize());
+        ListNode revereList = sl.reverse(head);
+        sl.display(revereList);
+        
+
     }
 }
