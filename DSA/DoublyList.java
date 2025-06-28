@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class DoublyList 
 {
     private ListNode head;
@@ -58,6 +60,46 @@ public class DoublyList
         tail = newNode;
         length++;
     }
+    public ListNode deleteFirst()
+    {
+        if(isEmpty())
+        {
+            throw new NoSuchElementException();
+        }
+        ListNode temp = head;
+        if(head == tail)
+        {
+            tail = null;
+        }
+        else
+        {
+            head.next.prev = null;
+        }
+        head = head.next;
+        temp.next = null;
+        length--;
+        return temp;
+    }
+    public ListNode deleteLast()
+    {
+        if(isEmpty())
+        {
+            throw new NoSuchElementException();
+        }
+        ListNode temp = tail;
+        if(head == tail)
+        {
+            head = null;
+        }
+        else
+        {
+            tail.prev.next = null;
+        }
+        tail = tail.prev;
+        temp.prev = null;
+        length--;
+        return temp;
+    }
     public void displyForward()
     {
         ListNode temp = head;
@@ -91,6 +133,10 @@ public class DoublyList
         dll.insertLast(16);
         dll.insertLast(18);
         dll.insertLast(20);
+        // dll.deleteFirst();
+        // dll.deleteFirst();
+        // dll.deleteLast();
+        // dll.deleteLast();
         System.out.println("Display Forward:");
         dll.displyForward();
         System.out.println("Display Backward:");
