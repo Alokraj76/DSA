@@ -1,9 +1,9 @@
 public class CircularList 
 {
-    private static ListNode last;
+    private ListNode last;
     private int length;
 
-    private static class ListNode
+    private  class ListNode
     {
         private ListNode next;
         private int data;
@@ -26,7 +26,19 @@ public class CircularList
     {
         return length == 0;
     }
-    public void display(ListNode last)
+
+    public void createList()
+    {
+        ListNode first = new ListNode(5);
+        ListNode second = new ListNode(10);     
+        ListNode third = new ListNode(20);
+        first.next = second;
+        second.next = third;
+        third.next = first; // Making it circular
+        last = third; // Last node points to the last element in the circular list
+        length++; // Incrementing the length of the list
+    }
+    public void display()
     {
         if(isEmpty())
         {
@@ -44,14 +56,7 @@ public class CircularList
     public static void main(String[] args) 
     {
         CircularList cl = new CircularList();
-        ListNode first = new ListNode(5);
-        ListNode second = new ListNode(10);
-        ListNode third = new ListNode(20);
-        first.next  = second;
-        second.next = third;
-        third.next = first;
-        last = third; // Last node points to the last element in the circular list
-        cl.length++;
-        cl.display(last);
+        cl.createList();
+        cl.display();
     }
 }
