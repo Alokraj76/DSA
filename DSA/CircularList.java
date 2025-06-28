@@ -3,7 +3,7 @@ public class CircularList
     private static ListNode last;
     private int length;
 
-    private class ListNode
+    private static class ListNode
     {
         private ListNode next;
         private int data;
@@ -26,7 +26,7 @@ public class CircularList
     {
         return length == 0;
     }
-    public void display()
+    public void display(ListNode last)
     {
         if(isEmpty())
         {
@@ -44,12 +44,14 @@ public class CircularList
     public static void main(String[] args) 
     {
         CircularList cl = new CircularList();
-        last = cl.new ListNode(5);
+        ListNode first = new ListNode(5);
         ListNode second = new ListNode(10);
         ListNode third = new ListNode(20);
-        last.next  = second;
+        first.next  = second;
         second.next = third;
-        third.next = last;
-        cl.display();
+        third.next = first;
+        last = third; // Last node points to the last element in the circular list
+        cl.length++;
+        cl.display(last);
     }
 }
